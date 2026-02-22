@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <Version>1.0.0</Version>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>Fox.ValidationKit.ResultKit</AssemblyName>
+    <RootNamespace>Fox.ValidationKit.ResultKit</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+
+    <!-- XML Documentation -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- Package Metadata -->
+    <PackageId>Fox.ValidationKit.ResultKit</PackageId>
+    <Title>Fox.ValidationKit.ResultKit</Title>
+    <Description>Optional Fox.ResultKit integration for Fox.ValidationKit. Provides ValidationResult to Result conversion with fluent API.</Description>
+    <Authors>Károly Akácz</Authors>
+    <Company>Károly Akácz</Company>
+    <Product>Fox.ValidationKit.ResultKit</Product>
+    <PackageTags>validation;validator;result;resultkit;adapter;integration</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/akikari/Fox.ValidationKit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/akikari/Fox.ValidationKit</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)..\artifacts</PackageOutputPath>
+
+    <!-- Symbol Package -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+    <!-- Source Link -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fox.ValidationKit\Fox.ValidationKit.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fox.ResultKit" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\assets\icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>

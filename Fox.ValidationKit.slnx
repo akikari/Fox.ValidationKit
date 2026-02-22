@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/Fox.ValidationKit.Demo/Fox.ValidationKit.Demo.csproj" Id="765d9e2d-4955-4ef2-ba22-bcd4ede993dd" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Fox.ValidationKit/Fox.ValidationKit.csproj" Id="908d7750-7f77-415a-8376-f7883350e1a7" />
+    <Project Path="src/Fox.ValidationKit.ResultKit/Fox.ValidationKit.ResultKit.csproj" Id="c296938b-17a8-4f0e-94ed-7c95fd3ba8db" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Fox.ValidationKit.ResultKit.Tests/Fox.ValidationKit.ResultKit.Tests.csproj" Id="17b7c3c6-2076-4cd0-9242-c1ff161627d7" />
+    <Project Path="tests/Fox.ValidationKit.Tests/Fox.ValidationKit.Tests.csproj" Id="74e1c3d7-7750-4e7c-a87f-89662da13f2b" />
+  </Folder>
+</Solution>

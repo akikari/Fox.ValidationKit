@@ -1,0 +1,22 @@
+Fox.ValidationKit - Copyright Notice
+=================================
+
+Copyright (c) 2026 Károly Akácz
+
+This software is licensed under the MIT License.
+See LICENSE.txt for the full license text.
+
+Original Author: Károly Akácz
+Project URL: https://github.com/akikari/Fox.ValidationKit
+
+This library provides lightweight validation DSL for .NET applications,
+enabling fluent, expressive validation rules with strong type safety and
+zero external dependencies.
+
+Key Components:
+- Fox.ValidationKit: Core library with validation rules and fluent API
+- Fox.ValidationKit.ResultKit: Integration with Fox.ResultKit for Railway Oriented Programming
+
+All contributions, modifications, and derivative works must retain this notice
+and the MIT License terms.
+
