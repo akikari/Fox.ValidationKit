@@ -113,11 +113,11 @@ Full documentation available at: https://github.com/akikari/Fox.ValidationKit
 
 Fox.ValidationKit is licensed under the MIT License.
 
-Copyright (c) 2026 Karoly Akacz
+Copyright (c) 2026 Károly Akácz
 
 ## Author
 
-**Karoly Akacz**
+**Károly Akácz**
 
 - GitHub: @akikari
 - Project: https://github.com/akikari/Fox.ValidationKit

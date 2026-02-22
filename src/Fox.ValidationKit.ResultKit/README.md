@@ -206,11 +206,11 @@ Full documentation available at:
 
 Fox.ValidationKit.ResultKit is licensed under the MIT License.
 
-Copyright (c) 2026 Karoly Akacz
+Copyright (c) 2026 Károly Akácz
 
 ## Author
 
-**Karoly Akacz**
+**Károly Akácz**
 
 - GitHub: [@akikari](https://github.com/akikari)
 - Project: [Fox.ValidationKit](https://github.com/akikari/Fox.ValidationKit)
