@@ -73,7 +73,7 @@ jobs:
       run: dotnet pack src/Fox.ValidationKit/Fox.ValidationKit.csproj --configuration Release --no-restore
 
     - name: Pack Fox.ValidationKit.ResultKit
-      run: dotnet pack Fox.ValidationKit.ResultKit/Fox.ValidationKit.ResultKit.csproj --configuration Release --no-restore
+      run: dotnet pack src/Fox.ValidationKit.ResultKit/Fox.ValidationKit.ResultKit.csproj --configuration Release --no-restore
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4

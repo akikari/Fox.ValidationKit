@@ -76,7 +76,7 @@ jobs:
         run: dotnet pack src/Fox.ValidationKit/Fox.ValidationKit.csproj --configuration Release --no-build /p:PackageVersion=${{ steps.get_version.outputs.VERSION }}
 
       - name: Pack Fox.ValidationKit.ResultKit
-        run: dotnet pack Fox.ValidationKit.ResultKit/Fox.ValidationKit.ResultKit.csproj --configuration Release --no-build /p:PackageVersion=${{ steps.get_version.outputs.VERSION }}
+        run: dotnet pack src/Fox.ValidationKit.ResultKit/Fox.ValidationKit.ResultKit.csproj --configuration Release --no-build /p:PackageVersion=${{ steps.get_version.outputs.VERSION }}
 
       - name: Publish Fox.ValidationKit to NuGet
         run: dotnet nuget push ./artifacts/Fox.ValidationKit.${{ steps.get_version.outputs.VERSION }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
