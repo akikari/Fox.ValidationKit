@@ -166,16 +166,3 @@ internal sealed class PropertyValidator<T, TProperty>(Func<T, TProperty> propert
 
     #endregion
 }
-
-//==================================================================================================
-/// <summary>
-/// Internal interface for property validators to enable polymorphic validation.
-/// </summary>
-/// <typeparam name="T">The type of the object being validated.</typeparam>
-//==================================================================================================
-internal interface IPropertyValidator<in T>
-{
-    IEnumerable<ValidationError> Validate(T instance);
-    Task<IEnumerable<ValidationError>> ValidateAsync(T instance, CancellationToken cancellationToken);
-    void SetMessageProvider(IValidationMessageProvider? provider);
-}
