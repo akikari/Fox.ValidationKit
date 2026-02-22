@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <IsPackable>false</IsPackable>
 
     <!-- Suppress XML documentation warnings for demo project -->
     <NoWarn>$(NoWarn);CS1591</NoWarn>
