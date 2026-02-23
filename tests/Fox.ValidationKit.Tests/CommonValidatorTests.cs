@@ -165,6 +165,18 @@ public sealed class CommonValidatorTests
         result.Errors.Should().Contain(e => e.ErrorCode == ValidationErrorCodes.NotNull);
     }
 
+    [Fact]
+    public void CreditCard_should_fail_for_invalid_luhn_checksum()
+    {
+        var validator = new ContactInfoValidator();
+        var contact = new ContactInfo { Email = "test@example.com", Website = "https://example.com", CreditCard = "4532015112830367" };
+
+        var result = validator.Validate(contact);
+
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should().Contain(e => e.PropertyName == "CreditCard" && e.ErrorCode == ValidationErrorCodes.CreditCard);
+    }
+
     //==============================================================================================
     /// <summary>
     /// Test model for Length validation.

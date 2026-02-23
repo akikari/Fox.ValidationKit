@@ -101,6 +101,23 @@ public sealed class InternalRulesDefensiveCodeTests
 
     //==============================================================================================
     /// <summary>
+    /// Tests that CustomRule uses default error message when errorMessage is null.
+    /// </summary>
+    //==============================================================================================
+    [Fact]
+    public void CustomRule_should_use_default_error_message_when_null()
+    {
+        var rule = new CustomRule<TestModel, string?>("Value", (instance, value) => false, null!);
+        var model = new TestModel { Value = "test" };
+
+        var errors = rule.Validate(model, "test").ToList();
+
+        errors.Should().ContainSingle();
+        errors[0].Message.Should().Be("Value is invalid.");
+    }
+
+    //==============================================================================================
+    /// <summary>
     /// Tests that RuleForEachRule constructor throws for null propertyName.
     /// </summary>
     //==============================================================================================

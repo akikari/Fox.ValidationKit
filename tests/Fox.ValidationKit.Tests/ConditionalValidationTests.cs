@@ -196,6 +196,11 @@ public sealed class ConditionalValidationTests
         {
             RuleFor(x => x.CompanyName).When(x => x.IsCompany);
         }
+
+        public void CallUnlessWithoutRule()
+        {
+            RuleFor(x => x.CompanyName).Unless(x => x.IsCompany);
+        }
     }
 
     //==============================================================================================
@@ -209,6 +214,21 @@ public sealed class ConditionalValidationTests
         var validator = new EmptyValidator();
 
         var act = () => validator.CallWhenWithoutRule();
+
+        act.Should().Throw<InvalidOperationException>().WithMessage("*must be called after*");
+    }
+
+    //==============================================================================================
+    /// <summary>
+    /// Tests that Unless throws when called without a preceding rule.
+    /// </summary>
+    //==============================================================================================
+    [Fact]
+    public void Unless_should_throw_when_called_without_rule()
+    {
+        var validator = new EmptyValidator();
+
+        var act = () => validator.CallUnlessWithoutRule();
 
         act.Should().Throw<InvalidOperationException>().WithMessage("*must be called after*");
     }

@@ -66,3 +66,34 @@ public sealed class PropertyValidatorTests
         act.Should().Throw<ArgumentNullException>().WithParameterName("rule");
     }
 }
+
+//==================================================================================================
+/// <summary>
+/// Tests for RuleBuilder defensive null checks.
+/// </summary>
+//==================================================================================================
+public sealed class RuleBuilderTests
+{
+    //==============================================================================================
+    /// <summary>
+    /// Test model for RuleBuilder tests.
+    /// </summary>
+    //==============================================================================================
+    private sealed class TestModel
+    {
+        public int Value { get; set; }
+    }
+
+    //==============================================================================================
+    /// <summary>
+    /// Tests that RuleBuilder constructor throws for null propertyValidator.
+    /// </summary>
+    //==============================================================================================
+    [Fact]
+    public void Constructor_should_throw_for_null_propertyValidator()
+    {
+        var act = () => new RuleBuilder<TestModel, int>(null!);
+
+        act.Should().Throw<ArgumentNullException>().WithParameterName("propertyValidator");
+    }
+}

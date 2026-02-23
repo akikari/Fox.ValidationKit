@@ -34,4 +34,22 @@ public sealed class ValidationResultDefensiveCodeTests
             .WithInnerException<ArgumentNullException>()
             .Which.ParamName.Should().Be("errors");
     }
+
+    //==============================================================================================
+    /// <summary>
+    /// Tests that ValidationResult.AddError throws for null error.
+    /// </summary>
+    //==============================================================================================
+    [Fact]
+    public void AddError_should_throw_for_null_error()
+    {
+        var result = ValidationResult.Success();
+        var addErrorMethod = typeof(ValidationResult).GetMethod("AddError", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+
+        var act = () => addErrorMethod!.Invoke(result, [null!]);
+
+        act.Should().Throw<System.Reflection.TargetInvocationException>()
+            .WithInnerException<ArgumentNullException>()
+            .Which.ParamName.Should().Be("error");
+    }
 }
