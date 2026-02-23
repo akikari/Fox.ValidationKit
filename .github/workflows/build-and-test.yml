@@ -44,7 +44,7 @@ jobs:
 
     - name: Run ValidationKit tests with coverage
       if: matrix.os == 'ubuntu-latest' && matrix.dotnet-version == '8.0.x'
-      run: dotnet test tests/Fox.ValidationKit.Tests/Fox.ValidationKit.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory ./coverage-report
+      run: dotnet test tests/Fox.ValidationKit.Tests/Fox.ValidationKit.Tests.csproj --configuration Release --no-build --framework net8.0 --collect:"XPlat Code Coverage" --settings coverlet.runsettings --results-directory ./coverage-report
 
     - name: Upload coverage to Codecov
       if: matrix.os == 'ubuntu-latest' && matrix.dotnet-version == '8.0.x'
