@@ -7,7 +7,7 @@
           <Format>cobertura</Format>
           <Include>[Fox.ValidationKit]*,[Fox.ValidationKit.ResultKit]*</Include>
           <Exclude>[*.Tests]*,[*.Demo]*,[*]System.Text.RegularExpressions.Generated.*</Exclude>
-          <ExcludeByAttribute>Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute,ExcludeFromCodeCoverageAttribute</ExcludeByAttribute>
+          <ExcludeByAttribute>Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute,ExcludeFromCodeCoverageAttribute,System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute</ExcludeByAttribute>
         </Configuration>
       </DataCollector>
     </DataCollectors>
