@@ -2,6 +2,7 @@
 // Abstract base class for validation rules providing common synchronous validation logic.
 // Async validation delegates to synchronous validation by default.
 //==================================================================================================
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fox.ValidationKit.Rules;
 
@@ -70,6 +71,7 @@ internal abstract class ValidationRuleBase<T, TProperty>(string propertyName, st
     /// <param name="defaultMessage">The default error message if no custom message was provided.</param>
     /// <returns>A collection containing a single validation error.</returns>
     //==============================================================================================
+    [ExcludeFromCodeCoverage]
     protected IEnumerable<ValidationError> CreateError(string defaultMessage)
     {
         var message = errorMessage ?? defaultMessage;

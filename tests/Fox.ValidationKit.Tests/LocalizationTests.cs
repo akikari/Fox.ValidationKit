@@ -161,6 +161,32 @@ public sealed class LocalizationTests
         result.Should().BeSameAs(validator);
     }
 
+    private sealed class ValidatorWithProviderInConstructor : Validator<TestProduct>
+    {
+        public ValidatorWithProviderInConstructor()
+        {
+            UseMessageProvider(new HungarianMessageProvider());
+            RuleFor(x => x.Name).NotEmpty();
+        }
+    }
+
+    //==============================================================================================
+    /// <summary>
+    /// RuleFor after UseMessageProvider should use localized messages.
+    /// </summary>
+    //==============================================================================================
+    [Fact]
+    public void RuleFor_after_UseMessageProvider_should_use_localized_messages()
+    {
+        var validator = new ValidatorWithProviderInConstructor();
+        var product = new TestProduct { Name = "" };
+
+        var result = validator.Validate(product);
+
+        result.IsValid.Should().BeFalse();
+        result.Errors[0].Message.Should().Be("Name nem lehet üres.");
+    }
+
     //==============================================================================================
     /// <summary>
     /// UseMessageProvider should throw when provider is null.

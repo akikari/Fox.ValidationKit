@@ -165,11 +165,6 @@ public abstract class Validator<T>
             return memberExpression.Member.Name;
         }
 
-        if (expression.Body is UnaryExpression { Operand: MemberExpression unaryMemberExpression })
-        {
-            return unaryMemberExpression.Member.Name;
-        }
-
         throw new ArgumentException("Expression must be a member expression", nameof(expression));
     }
 

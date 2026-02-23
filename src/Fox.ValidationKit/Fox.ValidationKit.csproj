@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
     <IsPackable>true</IsPackable>
     <AssemblyName>Fox.ValidationKit</AssemblyName>
     <RootNamespace>Fox.ValidationKit</RootNamespace>

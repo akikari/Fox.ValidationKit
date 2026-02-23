@@ -106,6 +106,19 @@ public sealed class CommonValidatorTests
     }
 
     [Fact]
+    public void Url_should_fail_for_null()
+    {
+        var validator = new ContactInfoValidator();
+        var contact = new ContactInfo { Email = "test@example.com", Website = null, CreditCard = "4532015112830366" };
+
+        var result = validator.Validate(contact);
+
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should().Contain(e => e.PropertyName == "Website");
+        result.Errors.Should().Contain(e => e.ErrorCode == ValidationErrorCodes.NotNull);
+    }
+
+    [Fact]
     public void CreditCard_should_pass_for_valid_visa()
     {
         var validator = new ContactInfoValidator();
@@ -137,6 +150,19 @@ public sealed class CommonValidatorTests
 
         result.IsValid.Should().BeFalse();
         result.Errors.Should().Contain(e => e.PropertyName == "CreditCard");
+    }
+
+    [Fact]
+    public void CreditCard_should_fail_for_null()
+    {
+        var validator = new ContactInfoValidator();
+        var contact = new ContactInfo { Email = "test@example.com", Website = "https://example.com", CreditCard = null };
+
+        var result = validator.Validate(contact);
+
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should().Contain(e => e.PropertyName == "CreditCard");
+        result.Errors.Should().Contain(e => e.ErrorCode == ValidationErrorCodes.NotNull);
     }
 
     //==============================================================================================
@@ -214,6 +240,18 @@ public sealed class CommonValidatorTests
         result.Errors.Should().Contain(e => e.Message.Contains("between 3 and 20"));
     }
 
+    [Fact]
+    public void Length_should_fail_for_null()
+    {
+        var validator = new UsernameValidator();
+        var data = new UsernameData { Username = null };
+
+        var result = validator.Validate(data);
+
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should().Contain(e => e.ErrorCode == ValidationErrorCodes.NotNull);
+    }
+
     //==============================================================================================
     /// <summary>
     /// Test model for IsInEnum validation.
@@ -226,12 +264,12 @@ public sealed class CommonValidatorTests
         High = 3
     }
 
-    private sealed class Task
+    private sealed class TaskModel
     {
         public Priority TaskPriority { get; set; }
     }
 
-    private sealed class TaskValidator : Validator<Task>
+    private sealed class TaskValidator : Validator<TaskModel>
     {
         public TaskValidator()
         {
@@ -243,7 +281,7 @@ public sealed class CommonValidatorTests
     public void IsInEnum_should_pass_for_valid_enum_value()
     {
         var validator = new TaskValidator();
-        var task = new Task { TaskPriority = Priority.High };
+        var task = new TaskModel { TaskPriority = Priority.High };
 
         var result = validator.Validate(task);
 
@@ -254,7 +292,7 @@ public sealed class CommonValidatorTests
     public void IsInEnum_should_fail_for_invalid_enum_value()
     {
         var validator = new TaskValidator();
-        var task = new Task { TaskPriority = (Priority)999 };
+        var task = new TaskModel { TaskPriority = (Priority)999 };
 
         var result = validator.Validate(task);
 
@@ -269,7 +307,7 @@ public sealed class CommonValidatorTests
 
         foreach (Priority priority in Enum.GetValues<Priority>())
         {
-            var task = new Task { TaskPriority = priority };
+            var task = new TaskModel { TaskPriority = priority };
             var result = validator.Validate(task);
             result.IsValid.Should().BeTrue($"Priority.{priority} should be valid");
         }
@@ -325,5 +363,62 @@ public sealed class CommonValidatorTests
         var result = validator.Validate(data);
 
         result.Errors.Should().Contain(e => e.Message == "Password must contain at least one digit");
+    }
+
+    private sealed class PasswordMustAsyncValidator : Validator<PasswordData>
+    {
+        public PasswordMustAsyncValidator()
+        {
+            RuleFor(x => x.Password).CustomAsync(async (instance, password) =>
+            {
+                await Task.Delay(1);
+                return password?.Any(char.IsDigit) == true;
+            }, "Password must contain at least one digit");
+        }
+    }
+
+    [Fact]
+    public async Task CustomAsync_should_pass_when_predicate_returns_true()
+    {
+        var validator = new PasswordMustAsyncValidator();
+        var data = new PasswordData { Password = "pass123" };
+
+        var result = await validator.ValidateAsync(data);
+
+        result.IsValid.Should().BeTrue();
+    }
+
+    [Fact]
+    public async Task CustomAsync_should_fail_when_predicate_returns_false()
+    {
+        var validator = new PasswordMustAsyncValidator();
+        var data = new PasswordData { Password = "password" };
+
+        var result = await validator.ValidateAsync(data);
+
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should().Contain(e => e.Message.Contains("digit"));
+    }
+
+    [Fact]
+    public async Task CustomAsync_should_use_custom_error_message()
+    {
+        var validator = new PasswordMustAsyncValidator();
+        var data = new PasswordData { Password = "nodigits" };
+
+        var result = await validator.ValidateAsync(data);
+
+        result.Errors.Should().Contain(e => e.Message == "Password must contain at least one digit");
+    }
+
+    [Fact]
+    public void CustomAsync_should_throw_not_supported_when_calling_sync_validate()
+    {
+        var validator = new PasswordMustAsyncValidator();
+        var data = new PasswordData { Password = "pass123" };
+
+        var action = () => validator.Validate(data);
+
+        action.Should().Throw<NotSupportedException>().WithMessage("*ValidateAsync*");
     }
 }

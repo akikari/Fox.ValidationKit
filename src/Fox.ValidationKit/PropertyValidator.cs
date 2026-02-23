@@ -2,6 +2,7 @@
 // Internal class that holds validation rules for a specific property.
 // Executes all registered rules and collects validation errors.
 //==================================================================================================
+using System.Diagnostics.CodeAnalysis;
 using Fox.ValidationKit.Rules;
 
 namespace Fox.ValidationKit;
@@ -70,7 +71,12 @@ internal sealed class PropertyValidator<T, TProperty>(Func<T, TProperty> propert
     /// Replaces the last added rule with a new rule (used for wrapping with conditional logic).
     /// </summary>
     /// <param name="newRule">The rule to replace the last rule with.</param>
+    /// <remarks>
+    /// The rules.Count == 0 check is defensive code - GetLastRule() is always called first
+    /// by When/Unless methods, which throw before ReplaceLastRule is reached.
+    /// </remarks>
     //==============================================================================================
+    [ExcludeFromCodeCoverage]
     public void ReplaceLastRule(IValidationRule<T, TProperty> newRule)
     {
         if (rules.Count == 0)

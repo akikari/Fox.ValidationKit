@@ -236,6 +236,56 @@ public sealed class ValidationRulesTests
 
         result.Errors[0].Message.Should().Be("Please provide a name");
     }
+
+    //==============================================================================================
+    /// <summary>
+    /// Tests that MaxLength rule passes for null value.
+    /// </summary>
+    //==============================================================================================
+    [Fact]
+    public void MaxLength_should_pass_for_null_value()
+    {
+        var validator = new MaxLengthValidator();
+        var model = new TestModel { Name = null };
+
+        var result = validator.Validate(model);
+
+        result.IsValid.Should().BeTrue();
+    }
+
+    //==============================================================================================
+    /// <summary>
+    /// Tests that MinLength rule fails for null value.
+    /// </summary>
+    //==============================================================================================
+    [Fact]
+    public void MinLength_should_fail_for_null_value()
+    {
+        var validator = new MinLengthValidator();
+        var model = new TestModel { Name = null };
+
+        var result = validator.Validate(model);
+
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should().Contain(e => e.ErrorCode == ValidationErrorCodes.NotNull);
+    }
+
+    //==============================================================================================
+    /// <summary>
+    /// Tests that RuleForEach async validation works correctly.
+    /// </summary>
+    //==============================================================================================
+    [Fact]
+    public async Task RuleForEach_should_validate_async()
+    {
+        var validator = new TagsAsyncValidator();
+        var model = new TagsModel { Tags = ["valid", "x"] };
+
+        var result = await validator.ValidateAsync(model);
+
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should().Contain(e => e.PropertyName.Contains("Tags"));
+    }
 }
 
 //==================================================================================================
@@ -286,4 +336,17 @@ public sealed class MatchesValidator : Validator<TestModel>
 public sealed class CustomMessageValidator : Validator<TestModel>
 {
     public CustomMessageValidator() => RuleFor(x => x.Name).NotEmpty("Please provide a name");
+}
+
+public sealed class TagsModel
+{
+    public IEnumerable<string>? Tags { get; set; }
+}
+
+public sealed class TagsAsyncValidator : Validator<TagsModel>
+{
+    public TagsAsyncValidator()
+    {
+        RuleFor(x => x.Tags).ForEach(tag => tag.Length >= 2, "Tag must be at least 2 characters");
+    }
 }

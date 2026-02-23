@@ -5,17 +5,9 @@
       <DataCollector friendlyName="XPlat Code Coverage">
         <Configuration>
           <Format>cobertura</Format>
-          <Include>
-            [Fox.ValidationKit]*
-            [Fox.ValidationKit.ResultKit]*
-          </Include>
-          <Exclude>
-            [*.Tests]*
-          </Exclude>
-          <ExcludeByAttribute>
-            GeneratedCodeAttribute
-            CompilerGeneratedAttribute
-          </ExcludeByAttribute>
+          <Include>[Fox.ValidationKit]*,[Fox.ValidationKit.ResultKit]*</Include>
+          <Exclude>[*.Tests]*,[*.Demo]*,[*]System.Text.RegularExpressions.Generated.*</Exclude>
+          <ExcludeByAttribute>Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute,ExcludeFromCodeCoverageAttribute</ExcludeByAttribute>
         </Configuration>
       </DataCollector>
     </DataCollectors>

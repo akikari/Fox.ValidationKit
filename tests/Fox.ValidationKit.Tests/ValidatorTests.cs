@@ -174,17 +174,38 @@ public sealed class ValidatorTests
         result.IsValid.Should().BeFalse();
         result.Errors.Should().Contain(e => e.Message.Contains("must be 18"));
     }
+
+    //==============================================================================================
+    /// <summary>
+    /// Tests that RuleFor throws for invalid expression.
+    /// </summary>
+    //==============================================================================================
+    [Fact]
+    public void RuleFor_should_throw_for_invalid_expression()
+    {
+        var act = () => new InvalidExpressionValidator();
+
+        act.Should().Throw<ArgumentException>().WithMessage("*member expression*");
+    }
+
+    private sealed class InvalidExpressionValidator : Validator<TestModel>
+    {
+        public InvalidExpressionValidator()
+        {
+            RuleFor(x => x.Age + 1);
+        }
+    }
 }
 
 //==================================================================================================
-/// <summary>
-/// Validator with custom rule for testing.
-/// </summary>
-//==================================================================================================
-public sealed class CustomValidator : Validator<TestModel>
-{
-    public CustomValidator()
+    /// <summary>
+    /// Validator with custom rule for testing.
+    /// </summary>
+    //==================================================================================================
+    public sealed class CustomValidator : Validator<TestModel>
     {
-        RuleFor(x => x.Age).Custom((model, age) => age >= 18, "Age must be 18 or older");
+        public CustomValidator()
+        {
+            RuleFor(x => x.Age).Custom((model, age) => age >= 18, "Age must be 18 or older");
+        }
     }
-}
