@@ -5,7 +5,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Fox.ValidationKit.svg)](https://www.nuget.org/packages/Fox.ValidationKit/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Fox.ValidationKit?label=downloads&color=darkgreen)](https://www.nuget.org/packages/Fox.ValidationKit/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
-[![codecov](https://img.shields.io/codecov/c/github/akikari/Fox.ValidationKit?token=HV5ND3AJVG&color=darkgreen&label=codecov)](https://codecov.io/gh/akikari/Fox.ValidationKit)
+[![codecov](https://img.shields.io/codecov/c/github/akikari/Fox.ValidationKit?color=darkgreen&label=codecov)](https://codecov.io/gh/akikari/Fox.ValidationKit)
 
 > **Lightweight .NET validation library with fluent API and zero dependencies**
 
