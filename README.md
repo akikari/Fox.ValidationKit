@@ -562,11 +562,60 @@ Fox.ValidationKit follows these design principles:
 
 Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
+**Fox.ValidationKit is intentionally lightweight and feature-focused.** The goal is to remain a simple, zero-dependency validation library with a fluent API.
+
+### What We Welcome
+
+- ✅ **Bug fixes** - Issues with existing validation rules or functionality
+- ✅ **Documentation improvements** - Clarifications, examples, typo fixes
+- ✅ **Performance optimizations** - Without breaking API compatibility
+- ✅ **New validation rules** - If they are commonly needed and align with the library's scope
+
+### What We Generally Do Not Accept
+
+- ❌ New dependencies or third-party packages (zero-dependency policy)
+- ❌ Large feature additions that increase complexity
+- ❌ Breaking API changes
+
+If you want to propose a significant change, please open an issue first to discuss whether it aligns with the project's philosophy.
+
+### Build Policy
+
+The project enforces a **strict build policy** to ensure code quality:
+
+- ❌ **No errors allowed** - Build must be error-free
+- ❌ **No warnings allowed** - All compiler warnings must be resolved
+- ❌ **No messages allowed** - Informational messages must be suppressed or addressed
+
+All pull requests must pass this requirement.
+
+### Code Quality Standards
+
 Fox.ValidationKit follows strict coding standards:
-- Comprehensive unit tests required (xUnit + FluentAssertions)
-- XML documentation for all public APIs
-- Follow Microsoft coding conventions
-- Zero warnings, zero errors build policy
+
+- **Comprehensive unit tests required** (xUnit + FluentAssertions)
+- **Maximum test coverage required** - Aim for 100% line and branch coverage. Tests may only be omitted if they would introduce artificial complexity (e.g., testing unreachable code paths, framework internals, or compiler-generated code). Use `[ExcludeFromCodeCoverage]` sparingly and only for justified cases.
+- **XML documentation for all public APIs** - Clear, concise documentation with examples
+- **Follow Microsoft coding conventions** - See `.github/copilot-instructions.md` for project-specific style
+- **Zero warnings, zero errors build policy** - Strict enforcement
+
+### Code Style
+
+- Follow the existing code style (see `.github/copilot-instructions.md`)
+- Use file-scoped namespaces
+- Enable nullable reference types
+- Use expression-bodied members for simple properties/methods
+- Private fields: camelCase without underscore prefix
+- Add XML documentation decorators (98-character width)
+
+### How to Contribute
+
+1. Fork the repository
+2. Create a feature branch from `main`
+3. Follow the coding standards in `.github/copilot-instructions.md`
+4. Write comprehensive unit tests (aim for 100% coverage)
+5. Ensure all tests pass and build is clean (zero warnings/errors)
+6. Submit a pull request
 
 ## 📄 License
 
