@@ -13,18 +13,20 @@ Fox.ValidationKit is a lightweight, expressive validation library for .NET with 
 
 ## 📋 Table of Contents
 
-- [Why Fox.ValidationKit?](#-why-foxvalidationkit)
-- [Features](#-features)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Validation Rules](#-validation-rules)
-- [Advanced Scenarios](#-advanced-scenarios)
-- [ResultKit Integration](#-resultkit-integration)
-- [Error Codes](#-error-codes)
-- [Design Principles](#-design-principles)
-- [Requirements](#-requirements)
-- [Contributing](#-contributing)
-- [License](#-license)
+- [Why Fox.ValidationKit?](#why-foxvalidationkit)
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Validation Rules](#validation-rules)
+- [Advanced Scenarios](#advanced-scenarios)
+- [ResultKit Integration](#resultkit-integration)
+- [Error Codes](#error-codes)
+- [Design Principles](#design-principles)
+- [Requirements](#requirements)
+- [Real-World Example](#real-world-example)
+- [Contributing](#contributing)
+- [License](#license)
+- [Author](#author)
 
 ## 🤔 Why Fox.ValidationKit?
 
@@ -557,6 +559,10 @@ Fox.ValidationKit follows these design principles:
 
 - .NET 8.0, .NET 9.0, or .NET 10.0
 - C# 12.0 or later (for modern language features)
+
+## 🎯 Real-World Example
+
+See this package in action within a complete production-grade application: **[Fox.TaskFlow](https://github.com/akikari/Fox.TaskFlow)** - A comprehensive demonstration showcasing real-world integration of seven Fox.*Kit packages in a task management system built with Clean Architecture, SOLID principles, and modern .NET 10 practices.
 
 ## 🤝 Contributing
 
